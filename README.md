@@ -210,3 +210,15 @@ server{
 - lua 脚本处理并未做任何图片尺寸限制,这样很容易被恶意改变宽和高参数而随意生成大量文件,浪费资源和空间,请根据直接情况自行处理
 
 参考:https://github.com/hopesoft/nginx-lua-image-module
+
+在 Nginx 编译时，需要指定 RPATH，加入下面选项即可：
+
+
+[plain] view plain copy print?
+./configure --with-ld-opt="-Wl,-rpath,$LUAJIT_LIB"  
+  
+或者  
+  
+export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH  
+
+
